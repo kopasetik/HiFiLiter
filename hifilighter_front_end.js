@@ -1,16 +1,51 @@
 $(document).ready(function() {
-        //Toggles "prompt" class nodes/elements
-        $("body").click(function() {
-            $(".prompt").toggle();
-        });
 
+    //Toggles "prompt" class nodes/elements
+    $("body").click(function() {
+        $(".prompt").toggle();
+    });
+
+
+    //This happens when the person finishes highlighting
+    $("p").mouseup(function(){
+        
         //TODO make a function that properly can...
         // I) return *.toString() of selections
-        var selectedText = document.getSelection().toString();
+        // Looks like I need to put this in an event (to create a closure?)
+        // so that it shows up in the console
+        var selObj = document.getSelection();
+        var selRange = selObj.getRangeAt();
+        // alert(selectedText);
 
-        // II) add tags (w/ or w/o custom classes/attributes) to those selections)
+        // II) add tags (w/ or w/o custom classes/attributes) to those selections
             // The essentials of this part are the following:
-            // T
-
-
+            // 1) See whether the selected text is in a single node
+            var singleNode = ( selObj.focusNode == selObj.anchorNode )
+            // 2) If yes, jump to step 5. If no, proceed to step 3
+            ranges = []
+            if ( singleNode ) {
+                ranges.push(selObj.getRangeAt().surroundContents())
+            } else {
+            // 3) Count the number of nodes across which the selected text spans
+            
+            // 4) Determine the ranges of the selected text for each node
+            
+            }
+            
+            // 5) Surround the range(s) with tags
+            
+            // 6) Toggle '.hilited' class for the tags
+            
+        // III) Put selection text into a margin popover
+            // 1) Get rid of any extra whitespace and/or carriage returns
+            
+            // 2) Determine whether popover should be on left or right side
+            
+            // 3) Create a popover
+            
+            // 4) Populate popover with selection text
+            
+            // 5) Include Twitter and Facebook sharing buttons
+            
     });
+});
