@@ -1,97 +1,98 @@
 <!DOCTYPE html>
 <head>
-	<title>Hifilighter Front Page</title>
-	<script src="jquery-1.10.2.js"></script>
-	<script src="../bootstrap/dist/js/bootstrap.min.js"></script>
-	<!--<link rel="stylesheet" type="text/css" href="hifilighter_front_end.css">-->
-	<!--<link rel="stylesheet" type="text/css" href="normalize.css">-->
-	<link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
-	<style type="text/css">
-		body {
-			margin: 0;
-			background: rgba( 0, 124, 255, 1 );
-		}
-		header {
-			background: url(lightning.jpg);
-			background-size: cover;
-			/*background-position: ;*/
-			color: rgba( 255, 255, 255, 1 );
-			text-align: center;
-		}
-		header img {
-			margin: 40px 0 0 0;
-			border: 5px dotted white;
-			border-radius: 20px;
-			width: 150px;
-			height: auto;
-		}
-		header ul {
-			background-color: rgba( 50, 0, 0, 0.5 );
-		}
-		header li {
-			display: inline;
-		}
-		header a {
-			color: white;
-		}
-		.overlay {
+    <title>Hifilighter Front Page</title>
+    <script src="../jquery/dist/jquery.js"></script>
+    <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="hifilighter_front_end.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="normalize.css">-->
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
+    <style type="text/css">
+        body {
+            margin: 0;
+            background: rgba( 0, 124, 255, 1 );
+        }
+        header {
+            background: url(lightning.jpg);
+            background-size: cover;
+            /*background-position: ;*/
+            color: rgba( 255, 255, 255, 1 );
+            text-align: center;
+        }
+        header img {
+            margin: 40px 0 0 0;
+            border: 5px dotted white;
+            border-radius: 20px;
+            width: 150px;
+            height: auto;
+        }
+        header ul {
+            background-color: rgba( 50, 0, 0, 0.5 );
+        }
+        header li {
+            display: inline;
+        }
+        header a {
+            color: white;
+        }
+        .overlay {
 
-		}
-		.prompt {
-			
-		}
-		article {
-			margin: 0 auto;
-			max-width: 500px;
-			text-align: justify;
-		}
-	</style>
-	<script type="text/javascript"></script>
+        }
+        .prompt {
+            
+        }
+        article {
+            margin: 0 auto;
+            max-width: 500px;
+            text-align: justify;
+        }
+    </style>
+    <script type="text/javascript"></script>
 </head>
 <body>
-	<header>
-		<img src="tmnt.jpg">
-		<ul>
-			<li><a href="#">Tutorial</a></li>
-			<li><a href="#">Links</a></li>
-			<li><a href="#">About</a></li>
-		</ul>
-	</header>
-	<div class="overlay">Welcome to BLOG, an HFL-powered webpage!</div>
+    <header>
+        <img src="tmnt.jpg">
+        <ul>
+            <li><a href="#">Tutorial</a></li>
+            <li><a href="#">Links</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </header>
+    <!-- This is going to be the overlay window. Common on sites that ask for your email, your signature on a petition, etc.-->
+    <div class="overlay">Welcome to BLOG, an HFL-powered webpage!</div>
+
+    <!-- Just some introductory prompts/messaging for the service. As user proceeds, she should be automatically cycled through these prompts -->
 <!--
-	<div class="prompt">Would you like to highlight your reading experience?
-		<div class="answer"><a href="#">Yes</a>  <a href="#">No</a></div>
-	</div>
-	<div class="prompt">Great! Just highlight text with your mouse as you would normally.</div>
-	<div class="prompt">Looking good! Just press the "+" button to add this content. Highlight anything!</div>
+    <div class="prompt">Would you like to highlight your reading experience?
+        <div class="answer"><a href="#">Yes</a>  <a href="#">No</a></div>
+    </div>
+    <div class="prompt">Great! Just highlight text with your mouse as you would normally.</div>
+    <div class="prompt">Looking good! Just press the "+" button to add this content. Highlight anything!</div>
 -->
-	<div>
-		<article>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		</article>
-		<article>
-			<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-		</article>
-		<article>
-			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
-		</article>
-	</div>
-	<footer></footer>
-	<script type="text/javascript">
-	$(document).ready(function() {
-		//Toggles "prompt" class nodes/elements
-		$("body").click(function() {
-			$(".prompt").toggle();
-		});
+    <div>
+        <article><p>Cray banh mi artisan scenester Neutra, freegan McSweeney's jean shorts 8-bit semiotics Marfa bespoke bitters. Tattooed you probably haven't heard of them 90's flannel, Terry Richardson viral wayfarers paleo food truck jean shorts salvia direct trade Austin +1 roof party. Brunch Shoreditch single-origin coffee leggings DIY, deep v organic gastropub paleo PBR&B disrupt. Narwhal beard vegan trust fund. Put a bird on it squid Intelligentsia, polaroid irony four loko cray direct trade VHS lo-fi. Salvia letterpress pour-over vinyl YOLO, next level brunch Godard Tonx quinoa Williamsburg. Kitsch High Life Terry Richardson locavore, polaroid meggings Williamsburg Odd Future put a bird on it biodiesel Truffaut chambray seitan.</p></article>
+                
+        <article><p>Pinterest lomo mumblecore, selvage tattooed quinoa cliche Etsy Blue Bottle disrupt 8-bit Pitchfork. Forage irony tote bag ugh Vice put a bird on it. Mlkshk Portland Marfa slow-carb biodiesel hella. Skateboard art party meh Tonx mustache, keffiyeh Schlitz artisan Cosby sweater ethnic. Plaid fingerstache PBR messenger bag Tonx irony mlkshk you probably haven't heard of them, beard deep v master cleanse lomo. Direct trade whatever plaid chambray, trust fund fanny pack +1 hashtag fashion axe Godard distillery Cosby sweater lo-fi. Disrupt Wes Anderson cornhole, ugh butcher Thundercats VHS raw denim.</p></article>
+                
+        <article><p>Shoreditch Terry Richardson cornhole Cosby sweater retro Neutra. Chillwave locavore fashion axe, Portland organic VHS polaroid Odd Future Helvetica chia street art. Odd Future letterpress pour-over brunch chambray. Small batch American Apparel vinyl YOLO mumblecore, gentrify dreamcatcher gastropub fanny pack Godard roof party paleo. Narwhal irony plaid aesthetic church-key keffiyeh. Etsy narwhal locavore messenger bag XOXO. Vice Wes Anderson Truffaut kitsch, hoodie ethnic bespoke whatever.</p></article>
+                
+        <article><p>Organic mustache swag umami. Seitan cred next level scenester occupy, Banksy Shoreditch meggings try-hard Blue Bottle biodiesel leggings distillery post-ironic fingerstache. Ethical meh kale chips selfies disrupt. Cornhole food truck yr vegan Blue Bottle keytar, mustache asymmetrical seitan. Selvage mixtape kale chips, YOLO scenester farm-to-table Wes Anderson PBR&B sriracha American Apparel Banksy Shoreditch biodiesel. Brooklyn shabby chic Pitchfork chambray, pork belly mlkshk tofu Blue Bottle Vice occupy Williamsburg irony flexitarian tattooed. Swag wayfarers Truffaut Odd Future, twee church-key Pitchfork umami craft beer Banksy slow-carb leggings.</p></article>
+    </div>
+    <footer></footer>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        //Toggles "prompt" class nodes/elements
+        $("body").click(function() {
+            $(".prompt").toggle();
+        });
 
-		$("p").select(function() {
-			console.log("It works!");
-			$(this).attr("wale-attr", "The attribute has been set");
-			var newAttr = $(this).attr("wale-attr");
-			alert(newAttr);
-		});
+        $("p").select(function() {
+            console.log("It works!");
+            $(this).attr("wale-attr", "The attribute has been set");
+            var newAttr = $(this).attr("wale-attr");
+            alert(newAttr);
+        });
 
 
-	});
-	</script>
+    });
+    </script>
 </body>
