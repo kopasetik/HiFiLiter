@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    background-color: rgba(0,124,255,1);
+    }
+header {
+    background: url(lightning.jpg);
+    background-size: cover;
+
+    color: rgba( 255, 255, 255, 1 );
+    text-align: center;
+    }
+header img {
+    margin: 40px 0 0 0;
+    border: 5px dotted white;
+    border-radius: 20px;
+    width: 150px;
+    height: auto;
+    }
+header ul {
+    background-color: rgba( 50, 0, 0, 0.5 );
+    }
+header li {
+    display: inline;
+    }
+header a {
+    color: white;
+    }
+.overlay {
+
+    }
+.prompt {
+    
+    }
+article {
+    margin: 0 auto;
+    max-width: 500px;
+    text-align: justify;
+    }

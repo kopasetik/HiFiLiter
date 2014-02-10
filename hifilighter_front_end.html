@@ -3,49 +3,9 @@
     <title>Hifilighter Front Page</title>
     <script src="../jquery/dist/jquery.js"></script>
     <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
-    <!--<link rel="stylesheet" type="text/css" href="hifilighter_front_end.css">-->
     <!--<link rel="stylesheet" type="text/css" href="normalize.css">-->
     <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
-    <style type="text/css">
-        body {
-            margin: 0;
-            background: rgba( 0, 124, 255, 1 );
-        }
-        header {
-            background: url(lightning.jpg);
-            background-size: cover;
-            /*background-position: ;*/
-            color: rgba( 255, 255, 255, 1 );
-            text-align: center;
-        }
-        header img {
-            margin: 40px 0 0 0;
-            border: 5px dotted white;
-            border-radius: 20px;
-            width: 150px;
-            height: auto;
-        }
-        header ul {
-            background-color: rgba( 50, 0, 0, 0.5 );
-        }
-        header li {
-            display: inline;
-        }
-        header a {
-            color: white;
-        }
-        .overlay {
-
-        }
-        .prompt {
-            
-        }
-        article {
-            margin: 0 auto;
-            max-width: 500px;
-            text-align: justify;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="hifilighter_front_end.css">
     <script type="text/javascript"></script>
 </head>
 <body>
@@ -78,21 +38,5 @@
         <article><p>Organic mustache swag umami. Seitan cred next level scenester occupy, Banksy Shoreditch meggings try-hard Blue Bottle biodiesel leggings distillery post-ironic fingerstache. Ethical meh kale chips selfies disrupt. Cornhole food truck yr vegan Blue Bottle keytar, mustache asymmetrical seitan. Selvage mixtape kale chips, YOLO scenester farm-to-table Wes Anderson PBR&B sriracha American Apparel Banksy Shoreditch biodiesel. Brooklyn shabby chic Pitchfork chambray, pork belly mlkshk tofu Blue Bottle Vice occupy Williamsburg irony flexitarian tattooed. Swag wayfarers Truffaut Odd Future, twee church-key Pitchfork umami craft beer Banksy slow-carb leggings.</p></article>
     </div>
     <footer></footer>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        //Toggles "prompt" class nodes/elements
-        $("body").click(function() {
-            $(".prompt").toggle();
-        });
-
-        $("p").select(function() {
-            console.log("It works!");
-            $(this).attr("wale-attr", "The attribute has been set");
-            var newAttr = $(this).attr("wale-attr");
-            alert(newAttr);
-        });
-
-
-    });
-    </script>
+    <script type="text/javascript" src="hifilighter_front_end.js"></script>
 </body>
