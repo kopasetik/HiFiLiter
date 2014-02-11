@@ -32,7 +32,7 @@ header a {
     
 }
 .hilited {
-
+    background-color: yellow;
 }
 article {
     margin: 0 auto;
