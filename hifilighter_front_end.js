@@ -37,7 +37,7 @@
 //                  });
 //             } else {
 //             // 3) Count the number of nodes across which the selected text spans
-            
+            // $('p').index(selObj.focusNode.parentElement) - $('p').index(selObj.anchorNode.parentElement)
 //             // 4) Determine the ranges of the selected text for each node
             
 //             }
