@@ -1,5 +1,5 @@
 body {
-    margin: 0;
+    margin: 0 auto;
     background-color: rgba(0,124,255,1);
     max-width: 1000px;
     text-align: center;
@@ -20,24 +20,30 @@ header img {
 }
 header ul {
     background-color: rgba( 50, 0, 0, 0.5 );
+    margin: 0 auto;
 }
 header li {
     display: inline;
+    margin: 0 auto;
 }
 header a {
     color: white;
 }
 .overlay {
     position: fixed;
-    width: 240px;
     height: 240px;
     padding: 20px;
-    margin: 0 auto;
-    top: 175px;
-    left: 150px;    
+    margin-left: -325px;
     display: block;
     border: 1px solid black;
     background-color: rgba(0, 190, 55, 0.5);
+    left: 50%;
+    line-height: normal;
+    max-height: 240px;
+    min-height: 240px;
+    top: 200px;
+    width: 650px;
+    z-index: 10001;
 }
 .prompt {
     
