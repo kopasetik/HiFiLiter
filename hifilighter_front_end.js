@@ -18,8 +18,6 @@
 //             return ( selObj.focusNode == selObj.anchorNode );
 //         };
 //         var ranges = [];
-//         var newNode = $('<strong style="background-color: yellow"></strong>');
-//         // alert(selectedText);
 
 //         // II) add tags (w/ or w/o custom classes/attributes) to those selections
 //             // The essentials of this part are the following:
@@ -39,7 +37,10 @@
 //             // 3) Count the number of nodes across which the selected text spans
 //             $('p').index(selObj.focusNode.parentElement) - $('p').index(selObj.anchorNode.parentElement)
 //             // 4) Determine the ranges of the selected text for each node
-            
+//                // var newRange1 = selObj.getRangeAt(), newRangeLast = newRange1.cloneRange()
+//                // newRange1.setEnd(newRange1.startContainer, newRange1.startContainer.length)
+//                // newRangeLast.setStart(newRangeLast.endContainer, 0)
+//                // Now figure out how to get highlighting for the nodes in between the first and last ones          
 //             }
             
 //             // 5) Surround the range(s) with tags & 6) Toggle '.hilited' class for the tags
@@ -62,15 +63,22 @@
 
 var selObj = document.getSelection();
 var ranges = [];
-var newNode = document.createElement("span");
-$(newNode).toggleClass('hilited');
 
-$(document).ready(function() {
-    $('p').mouseup(function() {
-        selObj.getRangeAt().surroundContents($(document.createElement("span")).toggleClass('hilited')[0]);
-        // TODO - push range location data for each selection to an array/object/json-file
-        // And put in an animation for the highlighting
+// A functjion to abstract the dom stuff going on in the jquery/selection
+// function surroundIt(selectedText){}
+
+// This code make the program erase text via highlight 
+// b/c the same node keeps on being used instead of
+// a new one each time
+// var newNode = document.createElement("span");
+// $(newNode).toggleClass('hilited');
+
+// $(document).ready(function() {
+//     $('p').mouseup(function() {
+//         selObj.getRangeAt().surroundContents($(document.createElement("span")).toggleClass('hilited')[0]);
+//         // TODO - push range location data for each selection to an array/object/json-file
+//         // And put in an animation for the highlighting
         
-    });
+//     });
 
-});
+// });
