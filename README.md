@@ -20,5 +20,6 @@ Ideally, will replace rangy/highlight plugin with homegrown solution
 
 *TARGETS*
 complete functionality for highlighting between paragraphs
+-in progress. highlighting of across paragraphs now possible(!), but now there are the questions of 1) unhighlighting highlighted passages 2) highlighting from the middle of one tag body(?) to the middle of another.
 insert popovers
 push range location data for each selection to an array/object/json-file

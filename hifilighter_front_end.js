@@ -1,50 +1,73 @@
-// $(document).ready(function() {
-
-//     //Toggles "prompt" class nodes/elements
-//     $("body").click(function() {
-//         $(".prompt").toggle();
-//     });
+$(document).ready(function() {
 
 
-//     //This happens when the person finishes highlighting
-//     $("p").mouseup(function(){
 
-//         //TODO make a function that properly can...
-//         // I) return *.toString() of selections
-//         // Looks like I need to put this in an event (to create a closure?)
-//         // so that it shows up in the console
-//         var selObj = document.getSelection();
-//         var singleNode = function(){
-//             return ( selObj.focusNode == selObj.anchorNode );
-//         };
-//         var ranges = [];
+    // This happens when the person finishes highlighting
+    $("p").mouseup(function(){
 
-//         // II) add tags (w/ or w/o custom classes/attributes) to those selections
-//             // The essentials of this part are the following:
-//             // 1) See whether the selected text is in a single node
-//                 var singleNode = function(){
-//                     return ( selObj.focusNode == selObj.anchorNode );
-//                 };
-//             if ( singleNode ) {
+        //TODO make a function that properly can...
+        // I) return *.toString() of selections
+        // Looks like I need to put this in an event (to create a closure?)
+        // so that it shows up in the console
+        var 
+            selObj = document.getSelection(),
+            ranges = [];
+
+        // II) add tags (w/ or w/o custom classes/attributes) to those selections
+        // The essentials of this part are the following:
+        // 1) See whether the selected text is in a single node
+        var singleNode = function(){
+            return ( selObj.focusNode == selObj.anchorNode );
+        };
+
+        if ( singleNode() ) {
             
-//             // 2) If yes, jump to step 5. If no, proceed to step 3
+        // 2) If yes, jump to step 5. If no, proceed to step 3            
+            ranges.push(selObj.getRangeAt());
+            ranges.forEach(function( element, idx, arr ){
+                element.surroundContents($(document.createElement("span")).toggleClass('hilited')[0]);
+                });
+            } else {
+        // 3) Count the number of nodes across which the selected text spans
+                var nodeCount = $('p').index(selObj.focusNode.parentElement) - $('p').index(selObj.anchorNode.parentElement);
+                if (nodeCount == 1) {
+                    var 
+                        newRangeFirst = selObj.getRangeAt().cloneRange(), 
+                        newRangeLast = newRangeFirst.cloneRange();
+                    newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
+                    newRangeLast.setStart( newRangeLast.endContainer, 0 );
+                    ranges.push( newRangeFirst );
+                    ranges.push( newRangeLast );
+                    ranges.forEach(function( element, idx, arr ){
+                        element.surroundContents($(document.createElement("span")).toggleClass('hilited')[0]);
+                    });
+                } else {
+                    var 
+                        newRangeFirst = selObj.getRangeAt().cloneRange(), 
+                        newRangeLast = newRangeFirst.cloneRange(),
+                        newRng = document.createRange();
+                    newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
+                    newRangeLast.setStart( newRangeLast.endContainer, 0 );
+                    ranges.push( newRangeFirst );
+                    ranges.push( newRangeLast );
+
+                    for ( var i = nodeCount-1; i > 0; i-- ) {
+                        newRng.selectNodeContents($('p')[$('p').index(selObj.anchorNode.parentElement) + i]);
+                        ranges.push(newRng.cloneRange());
+                    }
+
+
+                    ranges.forEach(function( element, idx, arr ){
+                        element.surroundContents($(document.createElement("span")).toggleClass('hilited')[0]);
+                        });
+                    }
+                        
+        // 4) Determine the ranges of the selected text for each node
+        // Now figure out how to get highlighting for the nodes in between the first and last ones          
+            }
             
-//                     // ranges.push(selObj.getRangeAt());
-//                     // ranges.forEach(function(element, idx, arr){
-//                     //     element.surroundContents()
-//                     // });
-//             } else {
-//             // 3) Count the number of nodes across which the selected text spans
-//             $('p').index(selObj.focusNode.parentElement) - $('p').index(selObj.anchorNode.parentElement)
-//             // 4) Determine the ranges of the selected text for each node
-//                // var newRange1 = selObj.getRangeAt(), newRangeLast = newRange1.cloneRange()
-//                // newRange1.setEnd(newRange1.startContainer, newRange1.startContainer.length)
-//                // newRangeLast.setStart(newRangeLast.endContainer, 0)
-//                // Now figure out how to get highlighting for the nodes in between the first and last ones          
-//             }
-            
-//             // 5) Surround the range(s) with tags & 6) Toggle '.hilited' class for the tags
-//                 selObj.getRangeAt().surroundContents($(document.createElement("span")).toggleClass('hilited')[0]);
+        // 5) Surround the range(s) with tags & 6) Toggle '.hilited' class for the tags
+        //selObj.getRangeAt().surroundContents($(document.createElement("span")).toggleClass('hilited')[0]);
 
 //         // III) Put selection text into a margin popover
 //             // 1) Get rid of any extra whitespace and/or carriage returns
@@ -58,11 +81,18 @@
             
 //             // 4) Include Twitter and Facebook sharing buttons
             
+    });
+//
+//     //Toggles "prompt" class nodes/elements
+//     $("body").click(function() {
+//         $(".prompt").toggle();
 //     });
-// });
+//
 
-var selObj = document.getSelection();
-var ranges = [];
+});
+
+// var selObj = document.getSelection();
+// var ranges = [];
 
 // A functjion to abstract the dom stuff going on in the jquery/selection
 // function surroundIt(selectedText){}
