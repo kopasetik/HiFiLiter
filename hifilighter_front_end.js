@@ -80,7 +80,8 @@ $(document).ready(function() {
 //             // 3) Populate popover with selection text
             
 //             // 4) Include Twitter and Facebook sharing buttons
-            
+//         // TODO - push range location data for each selection to an array/object/json-file
+//         // And put in an animation for the highlighting            
     });
 //
 //     //Toggles "prompt" class nodes/elements
@@ -106,8 +107,6 @@ $(document).ready(function() {
 // $(document).ready(function() {
 //     $('p').mouseup(function() {
 //         selObj.getRangeAt().surroundContents($(document.createElement("span")).toggleClass('hilited')[0]);
-//         // TODO - push range location data for each selection to an array/object/json-file
-//         // And put in an animation for the highlighting
         
 //     });
 
