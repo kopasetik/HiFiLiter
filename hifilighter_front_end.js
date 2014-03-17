@@ -1,18 +1,32 @@
 $(document).ready(function() {
 
+    var parseHTML = function(str) {
+        var tmp = document.implementation.createHTMLDocument();
+        tmp.body.innerHTML = str;
+        return tmp.body.children;
+    };
+
+    var makeHighligtedSpan = function(){
+        var el = document.createElement("span");
+        el.classList.toggle("hilited");
+        return el;
+    };
+
     // This happens when the person finishes highlighting
     $("p").mouseup(function(){
 
         //The function should:
         // I) create a selection variable and an array for ranges 
-        var 
+        var
             selObj = document.getSelection(),
             ranges = [];
 
         // II) add tags (w/ or w/o custom classes/attributes) to those selections
         // The essentials of this part are the following:
         // 1) See whether the selected text is in a single node
-        var singleNode = function(){
+        var
+            nodesArray = Array.prototype.slice.call(document.querySelectorAll("p")),
+            singleNode = function(){
             return ( selObj.focusNode == selObj.anchorNode );
         };
 
@@ -21,11 +35,13 @@ $(document).ready(function() {
         // 2) If yes, jump to step 5. If no, proceed to step 3            
             ranges.push(selObj.getRangeAt());
             ranges.forEach(function( element, idx, arr ){
-                element.surroundContents($(document.createElement("span")).toggleClass('hilited')[0]);
+                element.surroundContents(makeHighligtedSpan());
             });
         } else {
         // 3) Count the number of nodes across which the selected text spans
-            var nodeCount = $('p').index(selObj.focusNode.parentElement) - $('p').index(selObj.anchorNode.parentElement);
+            var nodeCount = nodesArray.indexOf(selObj.focusNode.parentElement) - nodesArray.indexOf(selObj.anchorNode.parentElement);
+            // old jquery version
+            // var nodeCount = $('p').index(selObj.focusNode.parentElement) - $('p').index(selObj.anchorNode.parentElement);
             if (nodeCount == 1) {
                 var 
                     newRangeFirst = selObj.getRangeAt().cloneRange(), 
@@ -35,7 +51,7 @@ $(document).ready(function() {
                 ranges.push( newRangeFirst );
                 ranges.push( newRangeLast );
                 ranges.forEach(function( element, idx, arr ){
-                    element.surroundContents($(document.createElement("span")).toggleClass('hilited')[0]);
+                    element.surroundContents(makeHighligtedSpan());
                 });
             } else {
                 var 
@@ -48,12 +64,14 @@ $(document).ready(function() {
                 ranges.push( newRangeLast );
 
                 for ( var i = nodeCount-1; i > 0; i-- ) {
-                    newRng.selectNodeContents($('p')[$('p').index(selObj.anchorNode.parentElement) + i]);
+                    newRng.selectNodeContents(nodesArray[nodesArray.indexOf(selObj.anchorNode.parentElement) + i]);
+                    // old jquery version
+                    // newRng.selectNodeContents($('p')[$('p').index(selObj.anchorNode.parentElement) + i]);
                     ranges.push(newRng.cloneRange());
                 }
 
                 ranges.forEach(function( element, idx, arr ){
-                    element.surroundContents($(document.createElement("span")).toggleClass('hilited')[0]);
+                    element.surroundContents(makeHighligtedSpan());
                 });
 
             }
@@ -63,7 +81,7 @@ $(document).ready(function() {
         }
             
         // 5) Surround the range(s) with tags & 6) Toggle '.hilited' class for the tags
-        //selObj.getRangeAt().surroundContents($(document.createElement("span")).toggleClass('hilited')[0]);
+        //selObj.getRangeAt().surroundContents(makeHighligtedSpan());
 
         // 7) Collapse any remaining selection
         // document.getSelection().collapse();
@@ -82,6 +100,15 @@ $(document).ready(function() {
 //         // TODO - push range location data for each selection to an array/object/json-file
 //         // And put in an animation for the highlighting/unhighlighting
     });
+
+    //What happens when a highlight is selected again? Or when it's clicked?
+    $(".hilited").mouseenter(function(){
+        $(this).toggleClass("hilited");
+    });
+
+    $(".hilited").mouseleave(function(){
+        $(this).toggleClass("hilited");
+    });    
 
         // IV) Extend or eliminate highlights when they are included in selections
         // 1) Determine whether a selected node includes a highlight
