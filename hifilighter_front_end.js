@@ -16,7 +16,7 @@ $(document).ready(function() {
     $("p").mouseup(function(){
 
         //The function should:
-        // I) create a selection variable and an array for ranges 
+        // I) create a selection variable and an array for ranges
         var
             selObj = document.getSelection(),
             ranges = [];
@@ -32,27 +32,21 @@ $(document).ready(function() {
 
         if ( singleNode() ) {
             
-        // 2) If yes, jump to step 5. If no, proceed to step 3            
+        // 2) If yes, jump to step 5. If no, proceed to step 3
             ranges.push(selObj.getRangeAt());
-            ranges.forEach(function( element, idx, arr ){
-                element.surroundContents(makeHighligtedSpan());
-            });
         } else {
         // 3) Count the number of nodes across which the selected text spans
             var nodeCount = nodesArray.indexOf(selObj.focusNode.parentElement) - nodesArray.indexOf(selObj.anchorNode.parentElement);
-            // old jquery version
-            // var nodeCount = $('p').index(selObj.focusNode.parentElement) - $('p').index(selObj.anchorNode.parentElement);
+
+        // 4) Determine the ranges of the selected text for each node
             if (nodeCount == 1) {
                 var 
-                    newRangeFirst = selObj.getRangeAt().cloneRange(), 
+                    newRangeFirst = selObj.getRangeAt().cloneRange(),
                     newRangeLast = newRangeFirst.cloneRange();
                 newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
                 newRangeLast.setStart( newRangeLast.endContainer, 0 );
                 ranges.push( newRangeFirst );
                 ranges.push( newRangeLast );
-                ranges.forEach(function( element, idx, arr ){
-                    element.surroundContents(makeHighligtedSpan());
-                });
             } else {
                 var 
                     newRangeFirst = selObj.getRangeAt().cloneRange(), 
@@ -63,28 +57,33 @@ $(document).ready(function() {
                 ranges.push( newRangeFirst );
                 ranges.push( newRangeLast );
 
+            // Get highlighting for the nodes in between the first and last ones
                 for ( var i = nodeCount-1; i > 0; i-- ) {
                     newRng.selectNodeContents(nodesArray[nodesArray.indexOf(selObj.anchorNode.parentElement) + i]);
-                    // old jquery version
-                    // newRng.selectNodeContents($('p')[$('p').index(selObj.anchorNode.parentElement) + i]);
                     ranges.push(newRng.cloneRange());
                 }
 
-                ranges.forEach(function( element, idx, arr ){
-                    element.surroundContents(makeHighligtedSpan());
-                });
-
             }
                         
-        // 4) Determine the ranges of the selected text for each node
-        // Now figure out how to get highlighting for the nodes in between the first and last ones          
         }
             
         // 5) Surround the range(s) with tags & 6) Toggle '.hilited' class for the tags
-        //selObj.getRangeAt().surroundContents(makeHighligtedSpan());
+        ranges.forEach(function( element, idx, arr ){
+            element.surroundContents(makeHighligtedSpan());
+        });
+
+        //What happens when a highlight is selected again? Or when it's clicked?
+        // Possibility: toggle the highlighting on mouseover
+        // $(".hilited").mouseenter(function(){
+        //     $(this).toggleClass("hilited");
+        // });
+
+        // $(".hilited").mouseleave(function(){
+        //     $(this).toggleClass("hilited");
+        // });
 
         // 7) Collapse any remaining selection
-        // document.getSelection().collapse();
+        document.getSelection().collapse();
 
 //      // III) Put selection text into a margin popover
 //      // 1) Get rid of any extra whitespace and/or carriage returns
@@ -101,14 +100,13 @@ $(document).ready(function() {
 //         // And put in an animation for the highlighting/unhighlighting
     });
 
-    //What happens when a highlight is selected again? Or when it's clicked?
-    $(".hilited").mouseenter(function(){
-        $(this).toggleClass("hilited");
-    });
+    // $(".hilited").mouseenter(function(){
+    //     $(this).toggleClass("hilited");
+    // });
 
-    $(".hilited").mouseleave(function(){
-        $(this).toggleClass("hilited");
-    });    
+    // $(".hilited").mouseleave(function(){
+    //     $(this).toggleClass("hilited");
+    // });
 
         // IV) Extend or eliminate highlights when they are included in selections
         // 1) Determine whether a selected node includes a highlight
