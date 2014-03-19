@@ -1,20 +1,7 @@
 $(document).ready(function() {
 
-    var parseHTML = function(str) {
-        var tmp = document.implementation.createHTMLDocument();
-        tmp.body.innerHTML = str;
-        return tmp.body.children;
-    };
-
-    var makeHighligtedSpan = function(){
-        var el = document.createElement("span");
-        el.classList.toggle("hilited");
-        return el;
-    };
-
-    // This happens when the person finishes highlighting
-    $("p").mouseup(function(){
-
+    
+    var liteItUp = function() {
         //The function should:
         // I) create a selection variable and an array for ranges
         var
@@ -98,6 +85,30 @@ $(document).ready(function() {
 //      // 4) Include Twitter and Facebook sharing buttons
 //         // TODO - push range location data for each selection to an array/object/json-file
 //         // And put in an animation for the highlighting/unhighlighting
+    };
+
+    var parseHTML = function(str) {
+        var tmp = document.implementation.createHTMLDocument();
+        tmp.body.innerHTML = str;
+        return tmp.body.children;
+    };
+
+    var makeHighligtedSpan = function(){
+        var el = document.createElement("span");
+        el.classList.toggle("hilited");
+        return el;
+    };
+
+    // This happens when the person finishes highlighting
+    $("p").mouseup(function(){
+
+        // Big if: see if the selection already contains highlighting
+
+        // If yes, remove highlighting tags before proceeding
+
+        // If no, just proceed!
+        liteItUp();
+
     });
 
     // $(".hilited").mouseenter(function(){
