@@ -1,21 +1,34 @@
 $(document).ready(function() {
 
-    
-    var liteItUp = function() {
-        //The function should:
-        // I) create a selection variable and an array for ranges
         var
             selObj = document.getSelection(),
             ranges = [];
-
-        // II) add tags (w/ or w/o custom classes/attributes) to those selections
-        // The essentials of this part are the following:
-        // 1) See whether the selected text is in a single node
         var
             nodesArray = Array.prototype.slice.call(document.querySelectorAll("p")),
             singleNode = function(){
             return ( selObj.focusNode == selObj.anchorNode );
         };
+            var nodeCount = nodesArray.indexOf(selObj.focusNode.parentElement) - nodesArray.indexOf(selObj.anchorNode.parentElement);
+    
+                var 
+                    newRangeFirst = selObj.getRangeAt().cloneRange(),
+                    newRangeLast = newRangeFirst.cloneRange();
+                    newRng = document.createRange();
+
+    function surroundIt() {
+        ranges.forEach(function( element, idx, arr ){
+            element.surroundContents(makeHighligtedSpan());
+        });
+        
+    }
+
+    var liteItUp = function() {
+        //The function should:
+        // I) create a selection variable and an array for ranges
+
+        // II) add tags (w/ or w/o custom classes/attributes) to those selections
+        // The essentials of this part are the following:
+        // 1) See whether the selected text is in a single node
 
         if ( singleNode() ) {
             
@@ -23,22 +36,14 @@ $(document).ready(function() {
             ranges.push(selObj.getRangeAt());
         } else {
         // 3) Count the number of nodes across which the selected text spans
-            var nodeCount = nodesArray.indexOf(selObj.focusNode.parentElement) - nodesArray.indexOf(selObj.anchorNode.parentElement);
 
         // 4) Determine the ranges of the selected text for each node
             if (nodeCount == 1) {
-                var 
-                    newRangeFirst = selObj.getRangeAt().cloneRange(),
-                    newRangeLast = newRangeFirst.cloneRange();
                 newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
                 newRangeLast.setStart( newRangeLast.endContainer, 0 );
                 ranges.push( newRangeFirst );
                 ranges.push( newRangeLast );
             } else {
-                var 
-                    newRangeFirst = selObj.getRangeAt().cloneRange(), 
-                    newRangeLast = newRangeFirst.cloneRange(),
-                    newRng = document.createRange();
                 newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
                 newRangeLast.setStart( newRangeLast.endContainer, 0 );
                 ranges.push( newRangeFirst );
@@ -55,9 +60,7 @@ $(document).ready(function() {
         }
             
         // 5) Surround the range(s) with tags & 6) Toggle '.hilited' class for the tags
-        ranges.forEach(function( element, idx, arr ){
-            element.surroundContents(makeHighligtedSpan());
-        });
+        surroundIt();
 
         //What happens when a highlight is selected again? Or when it's clicked?
         // Possibility: toggle the highlighting on mouseover
