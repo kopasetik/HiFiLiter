@@ -102,21 +102,22 @@ $(document).ready(function() {
 
     // The highlighting happens when the person finishes selecting text
     $("p").mouseup(function(){
-        // function isHilited( element ){
-        //     return !!element.dataset.hilited;
-        // }
+        function isHilited( element ){
+            return !!element.dataset.hilited;
+        }
 
-        // if (isHilited() && ) {
-        //     [element].outerHTML = [element].innerHTML
-        //     liteItUp();
-        //     return;
-        // }
+        if (isHilited( $(this)) && selObj().containsNode($(this))) {
+            [element].outerHTML = [element].innerHTML;
+            
+            liteItUp();
+            return;
+        }
 
-        // if (isHilited()) {
-        //     [element].outerHTML = [element].innerHTML
-        //     liteItUp();
-        //     return;
-        // }
+        if (isHilited()) {
+            [element].outerHTML = [element].innerHTML;
+            liteItUp();
+            return;
+        }
 
         liteItUp();
         return;
