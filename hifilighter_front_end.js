@@ -5,11 +5,17 @@ $(document).ready(function() {
         el.setAttribute("data-hilited", "yes");
         return el;
     }
+            
+    function selObj(){
+        return document.getSelection();
+    }
 
     function singleNode(){
-            return ( selObj.focusNode == selObj.anchorNode );
-        }
+        return ( selObj().focusNode == selObj().anchorNode );
+    }
 
+    var ranges = [];
+        
     // really can't use either of these since the second one is too general
     // var reggie1 = /<span class=\"hilited\">/g;
     // var reggie2 = /<\/span>/g;
@@ -18,9 +24,6 @@ $(document).ready(function() {
 
         //The function should:
         // I) create a selection variable and an array for ranges 
-        var
-            selObj = document.getSelection(),
-            ranges = [];
 
         // II) add tags (w/ or w/o custom classes/attributes) to those selections
         // The essentials of this part are the following:
@@ -31,18 +34,18 @@ $(document).ready(function() {
         if ( singleNode() ) {
             
         // 2) If yes, jump to step 5. If no, proceed to step 3            
-            ranges.push(selObj.getRangeAt());
+            ranges.push(selObj().getRangeAt());
             ranges.forEach(function( element, idx, arr ){
                 element.surroundContents(makeHighligtedSpan());
             });
         } else {
         // 3) Count the number of nodes across which the selected text spans
-            var nodeCount = nodesArray.indexOf(selObj.focusNode.parentElement) - nodesArray.indexOf(selObj.anchorNode.parentElement);
+            var nodeCount = nodesArray.indexOf(selObj().focusNode.parentElement) - nodesArray.indexOf(selObj().anchorNode.parentElement);
             // old jquery version
-            // var nodeCount = $('p').index(selObj.focusNode.parentElement) - $('p').index(selObj.anchorNode.parentElement);
+            // var nodeCount = $('p').index(selObj().focusNode.parentElement) - $('p').index(selObj().anchorNode.parentElement);
             if (nodeCount == 1) {
                 var 
-                    newRangeFirst = selObj.getRangeAt().cloneRange(), 
+                    newRangeFirst = selObj().getRangeAt().cloneRange(), 
                     newRangeLast = newRangeFirst.cloneRange();
                 newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
                 newRangeLast.setStart( newRangeLast.endContainer, 0 );
@@ -53,7 +56,7 @@ $(document).ready(function() {
                 });
             } else {
                 var 
-                    newRangeFirst = selObj.getRangeAt().cloneRange(), 
+                    newRangeFirst = selObj().getRangeAt().cloneRange(), 
                     newRangeLast = newRangeFirst.cloneRange(),
                     newRng = document.createRange();
                 newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
@@ -62,9 +65,9 @@ $(document).ready(function() {
                 ranges.push( newRangeLast );
 
                 for ( var i = nodeCount-1; i > 0; i-- ) {
-                    newRng.selectNodeContents(nodesArray[nodesArray.indexOf(selObj.anchorNode.parentElement) + i]);
+                    newRng.selectNodeContents(nodesArray[nodesArray.indexOf(selObj().anchorNode.parentElement) + i]);
                     // old jquery version
-                    // newRng.selectNodeContents($('p')[$('p').index(selObj.anchorNode.parentElement) + i]);
+                    // newRng.selectNodeContents($('p')[$('p').index(selObj().anchorNode.parentElement) + i]);
                     ranges.push(newRng.cloneRange());
                 }
 
@@ -79,7 +82,7 @@ $(document).ready(function() {
         }
             
         // 5) Surround the range(s) with tags & 6) Toggle '.hilited' class for the tags
-        //selObj.getRangeAt().surroundContents(makeHighligtedSpan());
+        //selObj().getRangeAt().surroundContents(makeHighligtedSpan());
 
         // 7) Collapse any remaining selection
         document.getSelection().collapse();
@@ -88,9 +91,9 @@ $(document).ready(function() {
     //      // 1) Get rid of any extra whitespace and/or carriage returns
             
     //      // 2) Create a popover
-    //          $(selObj.anchorNode.parentElementanchorObj).attr("data-toggle", "popover");
-    //          $(selObj.anchorNode.parentElementanchorObj).attr("data-content", "Hi again!");
-    //          $(selObj.anchorNode.parentElementanchorObj).popover('show');
+    //          $(selObj().anchorNode.parentElementanchorObj).attr("data-toggle", "popover");
+    //          $(selObj().anchorNode.parentElementanchorObj).attr("data-content", "Hi again!");
+    //          $(selObj().anchorNode.parentElementanchorObj).popover('show');
 
     //      // 3) Populate popover with selection text
 
@@ -102,8 +105,8 @@ $(document).ready(function() {
     // This happens when the person finishes highlighting
     $("p").mouseup(function(){
         // function isHilited(){
-        //     var selObj1 = document.getSelection();
-        //     selObj1.anchorNode.parentElement.innerHTML.match(reggie1);
+        //     var selObj()1 = document.getSelection();
+        //     selObj()1.anchorNode.parentElement.innerHTML.match(reggie1);
         // }
 
         // if (isHilited() && ) {
