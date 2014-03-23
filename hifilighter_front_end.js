@@ -27,14 +27,14 @@ $(document).ready(function() {
     }
 
     function nodeDiff(arr) {
-        arr.indexOf(selObj().focusNode.parentElement) - arr.indexOf(selObj().anchorNode.parentElement);
+        return arr.indexOf(selObj().focusNode.parentElement) - arr.indexOf(selObj().anchorNode.parentElement);
     }
 
     // function reactToNodeCount(){
     //     // if(){}
     // }
 
-    function liteItUp1(){
+    function liteItUp(){
 
         //The function should:
         // I) create a selection variable and an array for ranges 
@@ -46,12 +46,11 @@ $(document).ready(function() {
             
         // 2) If yes, jump to step 5. If no, proceed to step 3            
             ranges.push(selObj().getRangeAt());
-            surroundAll( ranges );
         } else {
         // 3) Count the number of nodes across which the selected text spans
             var litePNodeArr = makeNodesArray("p");
             var liteDiff = nodeDiff(litePNodeArr);
-            if (liteDiff == 1) {
+            if ( liteDiff == 1 ) {
                 var 
                     newRangeFirst = selObj().getRangeAt().cloneRange(), 
                     newRangeLast = newRangeFirst.cloneRange();
@@ -59,7 +58,6 @@ $(document).ready(function() {
                 newRangeLast.setStart( newRangeLast.endContainer, 0 );
                 ranges.push( newRangeFirst );
                 ranges.push( newRangeLast );
-                surroundAll( ranges );
             } else {
                 var 
                     newRangeFirst = selObj().getRangeAt().cloneRange(), 
@@ -70,24 +68,21 @@ $(document).ready(function() {
                 ranges.push( newRangeFirst );
                 ranges.push( newRangeLast );
 
-                // probably need an iife here
                 for ( var i = liteDiff-1; i > 0; i-- ) {
-                    newRng.selectNodeContents(litePNodeArr[litePNodeArr.indexOf(selObj().anchorNode.parentElement) + i]);
-                    ranges.push(newRng.cloneRange());
+                        newRng.selectNodeContents(litePNodeArr[litePNodeArr.indexOf(selObj().anchorNode.parentElement) + i]);
+                        ranges.push(newRng.cloneRange());
                 }
-
-                surroundAll( ranges );
 
             }
           
         // 4) Determine the ranges of the selected text for each node
         // Now figure out how to get highlighting for the nodes in between the first and last ones          
         }
-            
-        // 5) Surround the range(s) with tags & 6) Toggle '.hilited' class for the tags
-        //selObj().getRangeAt().surroundContents(makeHighligtedSpan());
 
-        // 7) Collapse any remaining selection
+        // 5) Surround the range(s) with tags & Toggle '.hilited' class for the tags
+        surroundAll( ranges );
+
+        // 6) Collapse any remaining selection
         selObj().collapse();
 
     //      // III) Put selection text into a margin popover
@@ -107,22 +102,23 @@ $(document).ready(function() {
 
     // The highlighting happens when the person finishes selecting text
     $("p").mouseup(function(){
-        // function isHilited(){
+        // function isHilited( element ){
+        //     return !!element.dataset.hilited;
         // }
 
         // if (isHilited() && ) {
         //     [element].outerHTML = [element].innerHTML
-        //     liteItUp1();
+        //     liteItUp();
         //     return;
         // }
 
         // if (isHilited()) {
         //     [element].outerHTML = [element].innerHTML
-        //     liteItUp1();
+        //     liteItUp();
         //     return;
         // }
 
-        liteItUp1();
+        liteItUp();
         return;
     });
 
