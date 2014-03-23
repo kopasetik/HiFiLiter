@@ -10,15 +10,29 @@ $(document).ready(function() {
         return document.getSelection();
     }
 
-    function singleNode(){
-        return ( selObj().focusNode == selObj().anchorNode );
+    function singleNode( obie ){
+        return ( obie.focusNode == obie.anchorNode );
     }
 
     var ranges = [];
-        
-    // really can't use either of these since the second one is too general
-    // var reggie1 = /<span class=\"hilited\">/g;
-    // var reggie2 = /<\/span>/g;
+
+    function surroundAll( arr ){
+        arr.forEach(function(element){
+                    element.surroundContents(makeHighligtedSpan());
+        });
+    }
+
+    function makeNodesArray( str ){
+        return Array.prototype.slice.call(document.querySelectorAll(str));
+    }
+
+    function nodeDiff(arr) {
+        arr.indexOf(selObj().focusNode.parentElement) - arr.indexOf(selObj().anchorNode.parentElement);
+    }
+
+    // function reactToNodeCount(){
+    //     // if(){}
+    // }
 
     function liteItUp1(){
 
@@ -28,22 +42,16 @@ $(document).ready(function() {
         // II) add tags (w/ or w/o custom classes/attributes) to those selections
         // The essentials of this part are the following:
         // 1) See whether the selected text is in a single node
-        var
-            nodesArray = Array.prototype.slice.call(document.querySelectorAll("p"));
-
-        if ( singleNode() ) {
+        if ( singleNode(selObj()) ) {
             
         // 2) If yes, jump to step 5. If no, proceed to step 3            
             ranges.push(selObj().getRangeAt());
-            ranges.forEach(function( element, idx, arr ){
-                element.surroundContents(makeHighligtedSpan());
-            });
+            surroundAll( ranges );
         } else {
         // 3) Count the number of nodes across which the selected text spans
-            var nodeCount = nodesArray.indexOf(selObj().focusNode.parentElement) - nodesArray.indexOf(selObj().anchorNode.parentElement);
-            // old jquery version
-            // var nodeCount = $('p').index(selObj().focusNode.parentElement) - $('p').index(selObj().anchorNode.parentElement);
-            if (nodeCount == 1) {
+            var litePNodeArr = makeNodesArray("p");
+            var liteDiff = nodeDiff(litePNodeArr);
+            if (liteDiff == 1) {
                 var 
                     newRangeFirst = selObj().getRangeAt().cloneRange(), 
                     newRangeLast = newRangeFirst.cloneRange();
@@ -51,9 +59,7 @@ $(document).ready(function() {
                 newRangeLast.setStart( newRangeLast.endContainer, 0 );
                 ranges.push( newRangeFirst );
                 ranges.push( newRangeLast );
-                ranges.forEach(function( element, idx, arr ){
-                    element.surroundContents(makeHighligtedSpan());
-                });
+                surroundAll( ranges );
             } else {
                 var 
                     newRangeFirst = selObj().getRangeAt().cloneRange(), 
@@ -64,16 +70,13 @@ $(document).ready(function() {
                 ranges.push( newRangeFirst );
                 ranges.push( newRangeLast );
 
-                for ( var i = nodeCount-1; i > 0; i-- ) {
-                    newRng.selectNodeContents(nodesArray[nodesArray.indexOf(selObj().anchorNode.parentElement) + i]);
-                    // old jquery version
-                    // newRng.selectNodeContents($('p')[$('p').index(selObj().anchorNode.parentElement) + i]);
+                // probably need an iife here
+                for ( var i = liteDiff-1; i > 0; i-- ) {
+                    newRng.selectNodeContents(litePNodeArr[litePNodeArr.indexOf(selObj().anchorNode.parentElement) + i]);
                     ranges.push(newRng.cloneRange());
                 }
 
-                ranges.forEach(function( element, idx, arr ){
-                    element.surroundContents(makeHighligtedSpan());
-                });
+                surroundAll( ranges );
 
             }
           
@@ -85,7 +88,7 @@ $(document).ready(function() {
         //selObj().getRangeAt().surroundContents(makeHighligtedSpan());
 
         // 7) Collapse any remaining selection
-        document.getSelection().collapse();
+        selObj().collapse();
 
     //      // III) Put selection text into a margin popover
     //      // 1) Get rid of any extra whitespace and/or carriage returns
@@ -102,11 +105,9 @@ $(document).ready(function() {
     //         // And put in an animation for the highlighting/unhighlighting
     }
 
-    // This happens when the person finishes highlighting
+    // The highlighting happens when the person finishes selecting text
     $("p").mouseup(function(){
         // function isHilited(){
-        //     var selObj()1 = document.getSelection();
-        //     selObj()1.anchorNode.parentElement.innerHTML.match(reggie1);
         // }
 
         // if (isHilited() && ) {
