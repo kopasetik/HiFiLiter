@@ -106,18 +106,18 @@ $(document).ready(function() {
             return !!element.dataset.hilited;
         }
 
-        if (isHilited( $(this)) && selObj().containsNode($(this))) {
-            [element].outerHTML = [element].innerHTML;
+        // if (isHilited( $(this)) && selObj().containsNode($(this))) {
+        //     [element].outerHTML = [element].innerHTML;
             
-            liteItUp();
-            return;
-        }
+        //     liteItUp();
+        //     return;
+        // }
 
-        if (isHilited()) {
-            [element].outerHTML = [element].innerHTML;
-            liteItUp();
-            return;
-        }
+        // if (isHilited()) {
+        //     [element].outerHTML = [element].innerHTML;
+        //     liteItUp();
+        //     return;
+        // }
 
         liteItUp();
         return;

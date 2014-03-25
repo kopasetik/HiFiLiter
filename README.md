@@ -16,7 +16,7 @@ This will be a plugin for highlighting text on your blog and news site. The defa
 
 As foreseen, it will be required that you use special tags/attributes for your article paragraphs and possibly incorporate some other light html/css/javascript.
 
-Ideally, will replace rangy/highlight plugin with homegrown solution
+Highlight solution has been homegrown thus far, but may begin to use rangy or another tool (temporarily!) for the most complete solution.
 
 *TARGETS*
 complete functionality for highlighting between paragraphs
