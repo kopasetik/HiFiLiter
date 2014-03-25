@@ -1,5 +1,5 @@
-$(document).ready(function() {
-
+    var ranges = [];
+    
     function makeNewElement( tagStr , attrStr ){
         var el = document.createElement( tagStr );
         if (attrStr){
@@ -8,7 +8,7 @@ $(document).ready(function() {
         }
         return el;
     }
-            
+    
     function selObj(){
         return document.getSelection();
     }
@@ -16,8 +16,6 @@ $(document).ready(function() {
     function singleNode( obie ){
         return ( obie.focusNode == obie.anchorNode );
     }
-
-    var ranges = [];
 
     function surroundAll( arr ){
         arr.forEach(function(element){
@@ -102,6 +100,10 @@ $(document).ready(function() {
     //         // TODO - push range location data for each selection to an array/object/json-file
     //         // And put in an animation for the highlighting/unhighlighting
     }
+
+$(document).ready(function() {
+
+            
 
     // The highlighting happens when the person finishes selecting text
     $("p").mouseup(function(){
