@@ -1,8 +1,11 @@
 $(document).ready(function() {
 
-    function makeHighligtedSpan(){
-        var el = document.createElement("span");
-        el.setAttribute("data-hilited", "yes");
+    function makeNewElement( tagStr , attrStr ){
+        var el = document.createElement( tagStr );
+        if (attrStr){
+            el.setAttribute( attrStr , "yes");
+            return el;
+        }
         return el;
     }
             
@@ -18,7 +21,7 @@ $(document).ready(function() {
 
     function surroundAll( arr ){
         arr.forEach(function(element){
-                    element.surroundContents(makeHighligtedSpan());
+                    element.surroundContents(makeNewElement("span", "data-hilited"));
         });
     }
 
@@ -26,7 +29,7 @@ $(document).ready(function() {
         return Array.prototype.slice.call(document.querySelectorAll(str));
     }
 
-    function nodeDiff(arr) {
+    function nodeDiff( arr ) {
         return arr.indexOf(selObj().focusNode.parentElement) - arr.indexOf(selObj().anchorNode.parentElement);
     }
 
