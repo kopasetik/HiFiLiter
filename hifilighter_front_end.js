@@ -72,7 +72,7 @@
             ranges.push(selObj().getRangeAt());
         } else {
         // 3) Count the number of nodes across which the selected text spans
-        reactToNodeCount();
+            reactToNodeCount();
             // var litePNodeArr = makeNodesArray("p");
             // var liteDiff = nodeDiff(litePNodeArr);
             // if ( liteDiff == 1 ) {
