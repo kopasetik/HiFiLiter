@@ -31,9 +31,32 @@
         return arr.indexOf(selObj().focusNode.parentElement) - arr.indexOf(selObj().anchorNode.parentElement);
     }
 
-    // function reactToNodeCount(){
-    //     // if(){}
-    // }
+    function reactToNodeCount(){
+        var litePNodeArr = makeNodesArray("p");
+        var liteDiff = nodeDiff(litePNodeArr);
+        if ( liteDiff == 1 ) {
+            var 
+                newRangeFirst = selObj().getRangeAt().cloneRange(), 
+                newRangeLast = newRangeFirst.cloneRange();
+            newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
+            newRangeLast.setStart( newRangeLast.endContainer, 0 );
+            ranges.push( newRangeFirst, newRangeLast );
+        } else {
+            var 
+                newRangeFirst = selObj().getRangeAt().cloneRange(), 
+                newRangeLast = newRangeFirst.cloneRange(),
+                newRng = document.createRange();
+            newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
+            newRangeLast.setStart( newRangeLast.endContainer, 0 );
+            ranges.push( newRangeFirst, newRangeLast );
+
+            for ( var i = liteDiff-1; i > 0; i-- ) {
+                    newRng.selectNodeContents(litePNodeArr[litePNodeArr.indexOf(selObj().anchorNode.parentElement) + i]);
+                    ranges.push(newRng.cloneRange());
+            }
+
+        }
+    }
 
     function liteItUp(){
 
@@ -49,32 +72,33 @@
             ranges.push(selObj().getRangeAt());
         } else {
         // 3) Count the number of nodes across which the selected text spans
-            var litePNodeArr = makeNodesArray("p");
-            var liteDiff = nodeDiff(litePNodeArr);
-            if ( liteDiff == 1 ) {
-                var 
-                    newRangeFirst = selObj().getRangeAt().cloneRange(), 
-                    newRangeLast = newRangeFirst.cloneRange();
-                newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
-                newRangeLast.setStart( newRangeLast.endContainer, 0 );
-                ranges.push( newRangeFirst );
-                ranges.push( newRangeLast );
-            } else {
-                var 
-                    newRangeFirst = selObj().getRangeAt().cloneRange(), 
-                    newRangeLast = newRangeFirst.cloneRange(),
-                    newRng = document.createRange();
-                newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
-                newRangeLast.setStart( newRangeLast.endContainer, 0 );
-                ranges.push( newRangeFirst );
-                ranges.push( newRangeLast );
+        reactToNodeCount();
+            // var litePNodeArr = makeNodesArray("p");
+            // var liteDiff = nodeDiff(litePNodeArr);
+            // if ( liteDiff == 1 ) {
+            //     var 
+            //         newRangeFirst = selObj().getRangeAt().cloneRange(), 
+            //         newRangeLast = newRangeFirst.cloneRange();
+            //     newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
+            //     newRangeLast.setStart( newRangeLast.endContainer, 0 );
+            //     ranges.push( newRangeFirst );
+            //     ranges.push( newRangeLast );
+            // } else {
+            //     var 
+            //         newRangeFirst = selObj().getRangeAt().cloneRange(), 
+            //         newRangeLast = newRangeFirst.cloneRange(),
+            //         newRng = document.createRange();
+            //     newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
+            //     newRangeLast.setStart( newRangeLast.endContainer, 0 );
+            //     ranges.push( newRangeFirst );
+            //     ranges.push( newRangeLast );
 
-                for ( var i = liteDiff-1; i > 0; i-- ) {
-                        newRng.selectNodeContents(litePNodeArr[litePNodeArr.indexOf(selObj().anchorNode.parentElement) + i]);
-                        ranges.push(newRng.cloneRange());
-                }
+            //     for ( var i = liteDiff-1; i > 0; i-- ) {
+            //             newRng.selectNodeContents(litePNodeArr[litePNodeArr.indexOf(selObj().anchorNode.parentElement) + i]);
+            //             ranges.push(newRng.cloneRange());
+            //     }
 
-            }
+            // }
           
         // 4) Determine the ranges of the selected text for each node
         // Now figure out how to get highlighting for the nodes in between the first and last ones          

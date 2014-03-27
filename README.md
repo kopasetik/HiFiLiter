@@ -18,6 +18,8 @@ As foreseen, it will be required that you use special tags/attributes for your a
 
 Highlight solution has been homegrown thus far, but may begin to use rangy or another tool (temporarily!) for the most complete solution.
 
+Grrr. Need to fix backwards highlighting. Also, need to fix highlighting where there's a bold/italic/etc element in the middle of a paragraph element.
+
 *TARGETS*
 complete functionality for highlighting between paragraphs
 -in progress. highlighting of across paragraphs now possible(!), but now there are the questions of 1) unhighlighting highlighted passages 2) highlighting from the middle of one tag body(?) to the middle of another.
