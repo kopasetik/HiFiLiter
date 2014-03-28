@@ -33,8 +33,11 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-#Use Google Plus Gem
-gem 'google_plus'
+# Use Google API Gem
+gem 'google-api-client'
+
+# Use Google Plus Gem
+#gem 'google_plus'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
