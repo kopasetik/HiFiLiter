@@ -1,12 +1,18 @@
 User
-email
-password
+GoogleID
+
 
 Article
 title
-url
+url:text
 
 Highlight
-text
-article
-user
+text:text
+article:references
+user:references
+
+Fragment
+text:text
+article:references
+highlight:references
+paragraph:integer
