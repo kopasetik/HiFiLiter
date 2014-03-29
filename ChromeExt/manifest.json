@@ -1,0 +1,27 @@
+{
+  "name": "HiFiLiter",
+  "description": "Highlight passages and save them",
+  "version": "0.1",
+  "content_scripts": [
+    {
+      "matches": ["http://*.nytimes.com/*"],
+      "css": ["hifiChrome.css"],
+      "js": ["jquery.js", "hifiChrome.js"]
+    }
+  ],
+
+  "background": {
+    "scripts": ["hifiChrome.js"],
+    "persistent": false
+  },
+
+  "browser_action": {
+    "default_title": "Turn on HiFiLiter",
+    "default_icon": {
+      "19": "hfl_ico_19.jpg",
+      "38": "hfl_ico_38.jpg"
+    }
+  },
+
+  "manifest_version": 2
+}
