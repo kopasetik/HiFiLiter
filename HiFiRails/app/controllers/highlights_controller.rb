@@ -24,7 +24,8 @@ class HighlightsController < ApplicationController
   # POST /highlights
   # POST /highlights.json
   def create
-    @article = Article.find_by_title(params[:article_title])[0] unless nil
+    p = params[:highlight]
+    # @article = Article.find_by_title(p["article_title"])[0] unless nil
     # @highlight = Highlight.new(highlight_params)
     @article.highlights.create(params[:highlight])
     # respond_to do |format|
