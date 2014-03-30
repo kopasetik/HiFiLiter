@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140329173929) do
+ActiveRecord::Schema.define(version: 20140329174336) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -19,5 +19,15 @@ ActiveRecord::Schema.define(version: 20140329173929) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "highlights", force: true do |t|
+    t.text     "text"
+    t.integer  "article_id"
+    t.string   "user"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "highlights", ["article_id"], name: "index_highlights_on_article_id"
 
 end

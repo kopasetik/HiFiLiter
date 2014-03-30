@@ -10,7 +10,6 @@ class HighlightsController < ApplicationController
   # GET /highlights/1
   # GET /highlights/1.json
   def show
-    @highlight = Highlight.find(params[:id])
   end
 
   # GET /highlights/new
