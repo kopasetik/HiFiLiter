@@ -24,31 +24,32 @@ class HighlightsController < ApplicationController
   # POST /highlights
   # POST /highlights.json
   def create
-    @highlight = Highlight.new(highlight_params)
-
-    respond_to do |format|
-      if @highlight.save
-        format.html { redirect_to @highlight, notice: 'Highlight was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @highlight }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @highlight.errors, status: :unprocessable_entity }
-      end
-    end
+    @article = Article.find_by_title(params[:article_title])[0] unless nil
+    # @highlight = Highlight.new(highlight_params)
+    @article.highlights.create(params[:highlight])
+    # respond_to do |format|
+    #   if @highlight.save
+    #     format.html { redirect_to @highlight, notice: 'Highlight was successfully created.' }
+    #     format.json { render action: 'show', status: :created, location: @highlight }
+    #   else
+    #     format.html { render action: 'new' }
+    #     format.json { render json: @highlight.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /highlights/1
   # PATCH/PUT /highlights/1.json
   def update
-    respond_to do |format|
-      if @highlight.update(highlight_params)
-        format.html { redirect_to @highlight, notice: 'Highlight was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @highlight.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @highlight.update(highlight_params)
+    #     format.html { redirect_to @highlight, notice: 'Highlight was successfully updated.' }
+    #     format.json { head :no_content }
+    #   else
+    #     format.html { render action: 'edit' }
+    #     format.json { render json: @highlight.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /highlights/1

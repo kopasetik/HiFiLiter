@@ -16,7 +16,7 @@
   },
 
   "browser_action": {
-    "default_title": "Turn on HiFiLiter",
+    "default_title": "HiFiLiter",
     "default_icon": {
       "19": "hfl_ico_19.jpg",
       "38": "hfl_ico_38.jpg"
