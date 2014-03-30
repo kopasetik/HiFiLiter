@@ -1,5 +1,15 @@
+    var jsonObie = {};
+
     var ranges = [];
     
+    function convertHiliteToJSON(){
+        
+    }
+
+    function sendJSONtoServer(){
+
+    }
+
     function makeNewElement( tagStr , attrStr ){
         var el = document.createElement( tagStr );
         if (attrStr){
