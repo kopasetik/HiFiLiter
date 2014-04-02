@@ -16,7 +16,7 @@
     <% @highlights.each do |highlight| %>
       <tr>
         <td><%= highlight.text %></td>
-        <td><%= highlight.article %></td>
+        <td><%= Article.find_by(highlight.article_id).title %></td>
         <td><%= highlight.user %></td>
         <td><%= link_to 'Show', highlight %></td>
         <td><%= link_to 'Edit', edit_highlight_path(highlight) %></td>

@@ -5,6 +5,7 @@ class HighlightsController < ApplicationController
   # GET /highlights.json
   def index
     @highlights = Highlight.all
+    # Article.find_by(highlight.article_id).title
   end
 
   # GET /highlights/1
@@ -14,7 +15,8 @@ class HighlightsController < ApplicationController
 
   # GET /highlights/new
   def new
-    @highlight = Highlight.new
+    @highlight = Highlight.create
+    # @highlight = Highlight.new
   end
 
   # GET /highlights/1/edit
@@ -62,6 +64,5 @@ class HighlightsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def highlight_params
       params.require(:highlight).permit(:text, :article_title, :user)
-      # params.require(:highlight).permit(:text, :article_id, :user)
     end
 end
