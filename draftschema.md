@@ -1,18 +1,35 @@
 User
-GoogleID
+TwitterID
 
 
 Article
 title
 url:text
 
+json schema
+{
+    "article": {
+        "title": "",
+        "url": ""
+    }
+}
+
+
 Highlight
 text:text
 article:references
-user:references
+<!-- user:references -->
 
-Fragment
+json schema
+{
+    "highlight": {
+        "text": "",
+        "url": ""
+    }
+}
+
+<!-- Fragment
 text:text
 article:references
 highlight:references
-paragraph:integer
+paragraph:integer -->

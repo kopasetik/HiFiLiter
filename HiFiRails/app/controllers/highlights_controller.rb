@@ -15,8 +15,7 @@ class HighlightsController < ApplicationController
 
   # GET /highlights/new
   def new
-    @highlight = Highlight.create
-    # @highlight = Highlight.new
+    @highlight = Highlight.new
   end
 
   # GET /highlights/1/edit
@@ -27,7 +26,8 @@ class HighlightsController < ApplicationController
   # POST /highlights.json
   def create
     @article = Article.find_or_create_by(title: params[:highlight][:article_title])
-    @article.highlights.create(params[:highlight_params])
+    @hi = @article.highlights.build( highlight_params )
+    @hi.save
     redirect_to article_path @article
   end
 

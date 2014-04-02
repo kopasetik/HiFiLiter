@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140329174336) do
+ActiveRecord::Schema.define(version: 20140402233525) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20140329174336) do
   create_table "highlights", force: true do |t|
     t.text     "text"
     t.integer  "article_id"
-    t.string   "user"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

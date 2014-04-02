@@ -3,9 +3,7 @@
 one:
   text: MyText
   article_id: 
-  user: MyString
 
 two:
   text: MyText
   article_id: 
-  user: MyString
