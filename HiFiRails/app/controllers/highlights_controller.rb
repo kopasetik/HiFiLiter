@@ -25,18 +25,7 @@ class HighlightsController < ApplicationController
   # POST /highlights.json
   def create
     @article = Article.find_or_create_by(title: params[:highlight][:article_title])
-    # @article = Article.find_by_title(p["article_title"])[0] unless nil
-    # @highlight = Highlight.new(highlight_params)
     @article.highlights.create(params[:highlight_params])
-    # respond_to do |format|
-    #   if @highlight.save
-    #     format.html { redirect_to @highlight, notice: 'Highlight was successfully created.' }
-    #     format.json { render action: 'show', status: :created, location: @highlight }
-    #   else
-    #     format.html { render action: 'new' }
-    #     format.json { render json: @highlight.errors, status: :unprocessable_entity }
-    #   end
-    # end
     redirect_to article_path @article
   end
 
@@ -72,6 +61,7 @@ class HighlightsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def highlight_params
-      params.require(:highlight).permit(:text, :article_id, :user)
+      params.require(:highlight).permit(:text, :article_title, :user)
+      # params.require(:highlight).permit(:text, :article_id, :user)
     end
 end
