@@ -7,7 +7,7 @@
 
 <p>
   <strong>Url:</strong>
-  <%= @article.url %>
+  <%= link_to @article.url, "http://#{@article.url}" %>
 </p>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
