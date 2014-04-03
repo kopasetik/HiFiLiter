@@ -5,7 +5,6 @@ class HighlightsController < ApplicationController
   # GET /highlights.json
   def index
     @highlights = Highlight.all
-    # Article.find_by(highlight.article_id).title
   end
 
   # GET /highlights/1
@@ -25,9 +24,9 @@ class HighlightsController < ApplicationController
   # POST /highlights
   # POST /highlights.json
   def create
-    @article = Article.find_or_create_by(title: params[:highlight][:article_title])
-    @hi = @article.highlights.build( highlight_params )
-    @hi.save
+    @article = Article.find_or_create_by(url: params[:highlight][:url])
+    @h = @article.highlights.build( text: params[:highlight][:text] )
+    @h.save
     redirect_to article_path @article
   end
 
@@ -63,6 +62,6 @@ class HighlightsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def highlight_params
-      params.require(:highlight).permit(:text, :article_title, :user)
+      params.require(:highlight).permit(:text, :url, :user)
     end
 end
