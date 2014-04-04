@@ -1,13 +1,32 @@
     var jsonObie = {};
 
+    var jsonRange = [];
+
     var ranges = [];
     
-    function convertHiliteToJSON(){
-        
+    function convertToArticleJSON(){
+        var artie = {};
+        artie["article"] = {"title": document.head.title, "url": document.URL};
+        return artie;
     }
 
-    function sendJSONtoServer(){
+    function convertToHiliteJSON( str ){
+        var hailey = {};
+        hailey["highlight"] = {"text": str , "url": document.URL};
+        return hailey;
+    }
 
+    // jsonRange.forEach(convertToHiliteJSON)
+    // jsonRange.forEach
+
+    function sendJSONtoServer( jay ){
+        $.ajax({
+           url: 'http://localhost:3000/articles.json',
+           type: 'POST',
+           contentType:'application/json',
+           data: JSON.stringify( jay ),
+           dataType:'json'
+        });
     }
 
     function makeNewElement( tagStr , attrStr ){
@@ -69,7 +88,7 @@
     }
 
     function liteItUp(){
-
+        jsonRange.push(selObj().toString().replace("\n\n", " ").trim());
         //The function should:
         // I) create a selection variable and an array for ranges 
 
