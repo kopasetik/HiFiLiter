@@ -88,7 +88,7 @@
     }
 
     function liteItUp(){
-        jsonRange.push(selObj().toString().replace("\n\n", " ").trim());
+        jsonRange.push(selObj().toString().replace(/\n\n/g, " ").trim());
         //The function should:
         // I) create a selection variable and an array for ranges 
 
@@ -112,6 +112,7 @@
 
         // 6) Collapse any remaining selection
         selObj().collapse();
+    }
 
     //      // III) Put selection text into a margin popover
     //      // 1) Get rid of any extra whitespace and/or carriage returns
@@ -126,7 +127,6 @@
     //      // 4) Include Twitter and Facebook sharing buttons
     //         // TODO - push range location data for each selection to an array/object/json-file
     //         // And put in an animation for the highlighting/unhighlighting
-    }
 
 $(document).ready(function() {
 
