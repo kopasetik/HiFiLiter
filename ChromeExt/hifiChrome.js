@@ -6,7 +6,7 @@
     
     function convertToArticleJSON(){
         var artie = {};
-        artie["article"] = {"title": document.head.title, "url": document.URL};
+        artie["article"] = {"title": document.querySelector("title").text, "url": document.URL};
         return artie;
     }
 
@@ -102,32 +102,6 @@
         } else {
         // 3) Count the number of nodes across which the selected text spans
             reactToNodeCount();
-            // var litePNodeArr = makeNodesArray("p");
-            // var liteDiff = nodeDiff(litePNodeArr);
-            // if ( liteDiff == 1 ) {
-            //     var 
-            //         newRangeFirst = selObj().getRangeAt().cloneRange(), 
-            //         newRangeLast = newRangeFirst.cloneRange();
-            //     newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
-            //     newRangeLast.setStart( newRangeLast.endContainer, 0 );
-            //     ranges.push( newRangeFirst );
-            //     ranges.push( newRangeLast );
-            // } else {
-            //     var 
-            //         newRangeFirst = selObj().getRangeAt().cloneRange(), 
-            //         newRangeLast = newRangeFirst.cloneRange(),
-            //         newRng = document.createRange();
-            //     newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
-            //     newRangeLast.setStart( newRangeLast.endContainer, 0 );
-            //     ranges.push( newRangeFirst );
-            //     ranges.push( newRangeLast );
-
-            //     for ( var i = liteDiff-1; i > 0; i-- ) {
-            //             newRng.selectNodeContents(litePNodeArr[litePNodeArr.indexOf(selObj().anchorNode.parentElement) + i]);
-            //             ranges.push(newRng.cloneRange());
-            //     }
-
-            // }
           
         // 4) Determine the ranges of the selected text for each node
         // Now figure out how to get highlighting for the nodes in between the first and last ones          
