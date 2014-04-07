@@ -114,19 +114,19 @@
         selObj().collapse();
     }
 
-    //      // III) Put selection text into a margin popover
-    //      // 1) Get rid of any extra whitespace and/or carriage returns
+    // III) Put selection text into a margin popover
+    // 1) Get rid of any extra whitespace and/or carriage returns
             
-    //      // 2) Create a popover
-    //          $(selObj().anchorNode.parentElementanchorObj).attr("data-toggle", "popover");
-    //          $(selObj().anchorNode.parentElementanchorObj).attr("data-content", "Hi again!");
-    //          $(selObj().anchorNode.parentElementanchorObj).popover('show');
+    // 2) Create a popover
+    // $(selObj().anchorNode.parentElementanchorObj).attr("data-toggle", "popover");
+    // $(selObj().anchorNode.parentElementanchorObj).attr("data-content", "Hi again!");
+    // $(selObj().anchorNode.parentElementanchorObj).popover('show');
 
-    //      // 3) Populate popover with selection text
+    // 3) Populate popover with selection text
 
-    //      // 4) Include Twitter and Facebook sharing buttons
-    //         // TODO - push range location data for each selection to an array/object/json-file
-    //         // And put in an animation for the highlighting/unhighlighting
+    // 4) Include Twitter and Facebook sharing buttons
+    // TODO - push range location data for each selection to an array/object/json-file
+    // And put in an animation for the highlighting/unhighlighting
 
 $(document).ready(function() {
 

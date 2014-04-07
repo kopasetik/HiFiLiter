@@ -4,7 +4,7 @@
   "version": "0.1",
   "content_scripts": [
     {
-      "matches": ["http://*.gawker.com/*"],
+      "matches": ["http://*.rubyonrails.org/*"],
       "css": ["hifiChrome.css"],
       "js": ["jquery.js", "hifiChrome.js"]
     }
