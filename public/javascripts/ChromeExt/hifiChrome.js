@@ -68,29 +68,20 @@
     }
 
     function reactToNodeCount(){
-        var litePNodeArr = makeNodesArray("p");
-        var liteDiff = nodeDiff(litePNodeArr);
+        var litePNodeArr = makeNodesArray("p"),
+            liteDiff = nodeDiff(litePNodeArr), 
+            newRangeFirst = selObj().getRangeAt().cloneRange(), 
+            newRangeLast = newRangeFirst.cloneRange(),
+            newRng = document.createRange();
+            newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
+            newRangeLast.setStart( newRangeLast.endContainer, 0 );
+            ranges.push( newRangeFirst, newRangeLast );
         if ( liteDiff == 1 ) {
-            var 
-                newRangeFirst = selObj().getRangeAt().cloneRange(), 
-                newRangeLast = newRangeFirst.cloneRange();
-            newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
-            newRangeLast.setStart( newRangeLast.endContainer, 0 );
-            ranges.push( newRangeFirst, newRangeLast );
         } else {
-            var 
-                newRangeFirst = selObj().getRangeAt().cloneRange(), 
-                newRangeLast = newRangeFirst.cloneRange(),
-                newRng = document.createRange();
-            newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
-            newRangeLast.setStart( newRangeLast.endContainer, 0 );
-            ranges.push( newRangeFirst, newRangeLast );
-
             for ( var i = liteDiff-1; i > 0; i-- ) {
                     newRng.selectNodeContents(litePNodeArr[litePNodeArr.indexOf(selObj().anchorNode.parentElement) + i]);
                     ranges.push(newRng.cloneRange());
             }
-
         }
     }
 
