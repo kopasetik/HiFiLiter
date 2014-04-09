@@ -4,12 +4,14 @@
 
     var ranges = [];
     
+    // how to test?
     function convertToArticleJSON(){
         var artie = {};
         artie["article"] = {"title": document.querySelector("title").text, "url": document.URL};
         return artie;
     }
 
+    // how to test?
     function convertToHiliteJSON( str ){
         var hailey = {};
         hailey["highlight"] = {"text": str , "url": document.URL};
@@ -19,6 +21,7 @@
     // jsonRange.forEach(convertToHiliteJSON)
     // jsonRange.forEach
 
+    // how to test?
     function sendJSONtoServer( jay ){
         $.ajax({
            url: 'http://localhost:3000/articles.json',
@@ -29,6 +32,7 @@
         });
     }
 
+    // how to test?
     function makeNewElement( tagStr , attrStr ){
         var el = document.createElement( tagStr );
         if (attrStr){
@@ -42,10 +46,12 @@
         return document.getSelection();
     }
 
+    // how to test?
     function singleNode( obie ){
         return ( obie.focusNode == obie.anchorNode );
     }
 
+    // how to test?
     function surroundAll( arr ){
         arr.forEach(function(element){
                     element.surroundContents(makeNewElement("span", "data-hilited"));
@@ -56,6 +62,7 @@
         return Array.prototype.slice.call(document.querySelectorAll(str));
     }
 
+    // how to test?
     function nodeDiff( arr ) {
         return arr.indexOf(selObj().focusNode.parentElement) - arr.indexOf(selObj().anchorNode.parentElement);
     }
@@ -114,19 +121,6 @@
         selObj().collapse();
     }
 
-    // III) Put selection text into a margin popover
-    // 1) Get rid of any extra whitespace and/or carriage returns
-            
-    // 2) Create a popover
-    // $(selObj().anchorNode.parentElementanchorObj).attr("data-toggle", "popover");
-    // $(selObj().anchorNode.parentElementanchorObj).attr("data-content", "Hi again!");
-    // $(selObj().anchorNode.parentElementanchorObj).popover('show');
-
-    // 3) Populate popover with selection text
-
-    // 4) Include Twitter and Facebook sharing buttons
-    // TODO - push range location data for each selection to an array/object/json-file
-    // And put in an animation for the highlighting/unhighlighting
 
 $(document).ready(function() {
 
@@ -155,8 +149,21 @@ $(document).ready(function() {
         return;
     });
 
-
 });
+
+    // III) Put selection text into a margin popover
+    // 1) Get rid of any extra whitespace and/or carriage returns
+            
+    // 2) Create a popover
+    // $(selObj().anchorNode.parentElementanchorObj).attr("data-toggle", "popover");
+    // $(selObj().anchorNode.parentElementanchorObj).attr("data-content", "Hi again!");
+    // $(selObj().anchorNode.parentElementanchorObj).popover('show');
+
+    // 3) Populate popover with selection text
+
+    // 4) Include Twitter and Facebook sharing buttons
+    // TODO - push range location data for each selection to an array/object/json-file
+    // And put in an animation for the highlighting/unhighlighting
 
     //What happens when a highlight is selected again? Or when it's clicked?
     //$(".hilited").mouseenter(function(){
