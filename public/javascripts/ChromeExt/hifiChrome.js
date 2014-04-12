@@ -94,6 +94,18 @@
         }
     }
 
+    function EmptyReturn(){
+        return;
+    }
+
+    function reactToNodeDiff( diffToProcess, caseA , defaultCase ){
+        if ( diffToProcess == 1) {
+            caseA();
+        }
+
+            defaultCase();
+    }
+
     function prepareAndPushMultipleRanges(){
         var newRangeFirst = selObj().getRangeAt().cloneRange(),
             newRangeLast = newRangeFirst.cloneRange();
