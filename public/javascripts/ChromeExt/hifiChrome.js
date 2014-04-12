@@ -94,16 +94,16 @@
         }
     }
 
-    function EmptyReturn(){
+    function emptyReturn(){
         return;
     }
 
     function reactToNodeDiff( diffToProcess, caseA , defaultCase ){
         if ( diffToProcess == 1) {
-            caseA();
+            return caseA();
         }
 
-            defaultCase();
+            return defaultCase();
     }
 
     function prepareAndPushMultipleRanges(){
@@ -115,10 +115,7 @@
             newRangeLast.setStart( newRangeLast.endContainer, 0 );
             ranges.push( newRangeFirst, newRangeLast );
 
-        if ( liteDiff() == 1 ) {
-            return;
-        }
-        pushMiddleRanges();
+        reactToNodeDiff( liteDiff(), emptyReturn, pushMiddleRanges)
     }
 
     function liteItUp(){
