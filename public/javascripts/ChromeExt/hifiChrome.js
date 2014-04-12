@@ -63,23 +63,37 @@
     }
 
     // how to test?
+    function determineHiliteDirection(){
+
+    }
+
+    // how to test?
     function nodeDiff( arr ) {
         return arr.indexOf(selObj().focusNode.parentElement) - arr.indexOf(selObj().anchorNode.parentElement);
     }
 
+    // how to test
+    function splitHiliteByNodes(){
+
+    }
+
+        var litePNodeArr = function(){return makeNodesArray("p");};
+        var liteDiff = function(){return nodeDiff(litePNodeArr());};
+        var newRangeFirst = function(){return selObj().getRangeAt().cloneRange();};
+
     function reactToNodeCount(){
-        var litePNodeArr = makeNodesArray("p"),
-            liteDiff = nodeDiff(litePNodeArr), 
-            newRangeFirst = selObj().getRangeAt().cloneRange(), 
-            newRangeLast = newRangeFirst.cloneRange(),
+        var newRfirst = newRangeFirst(),
+            newRangeLast = newRfirst.cloneRange(),
             newRng = document.createRange();
-            newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
+            
+        // not sure of successful way (without producing errors) to use functions instead of variables
+            newRfirst.setEnd( newRfirst.startContainer, newRfirst.startContainer.length );
             newRangeLast.setStart( newRangeLast.endContainer, 0 );
-            ranges.push( newRangeFirst, newRangeLast );
-        if ( liteDiff == 1 ) {
+            ranges.push( newRfirst, newRangeLast );
+        if ( liteDiff() == 1 ) {
         } else {
-            for ( var i = liteDiff-1; i > 0; i-- ) {
-                    newRng.selectNodeContents(litePNodeArr[litePNodeArr.indexOf(selObj().anchorNode.parentElement) + i]);
+            for ( var i = liteDiff()-1; i > 0; i-- ) {
+                    newRng.selectNodeContents(litePNodeArr()[litePNodeArr().indexOf(selObj().anchorNode.parentElement) + i]);
                     ranges.push(newRng.cloneRange());
             }
         }
@@ -113,34 +127,34 @@
     }
 
 
-$(document).ready(function() {
+// $(document).ready(function() {
 
             
 
-    // The highlighting happens when the person finishes selecting text
-    $("p").mouseup(function(){
-        function isHilited( element ){
-            return !!element.dataset.hilited;
-        }
+//     // The highlighting happens when the person finishes selecting text
+//     $("p").mouseup(function(){
+//         function isHilited( element ){
+//             return !!element.dataset.hilited;
+//         }
 
-        // if (isHilited( $(this)) && selObj().containsNode($(this))) {
-        //     [element].outerHTML = [element].innerHTML;
+//         // if (isHilited( $(this)) && selObj().containsNode($(this))) {
+//         //     [element].outerHTML = [element].innerHTML;
             
-        //     liteItUp();
-        //     return;
-        // }
+//         //     liteItUp();
+//         //     return;
+//         // }
 
-        // if (isHilited()) {
-        //     [element].outerHTML = [element].innerHTML;
-        //     liteItUp();
-        //     return;
-        // }
+//         // if (isHilited()) {
+//         //     [element].outerHTML = [element].innerHTML;
+//         //     liteItUp();
+//         //     return;
+//         // }
 
-        liteItUp();
-        return;
-    });
+//         liteItUp();
+//         return;
+//     });
 
-});
+// });
 
     // III) Put selection text into a margin popover
     // 1) Get rid of any extra whitespace and/or carriage returns
