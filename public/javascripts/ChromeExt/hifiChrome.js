@@ -77,26 +77,36 @@
 
     }
 
-        var litePNodeArr = function(){return makeNodesArray("p");};
-        var liteDiff = function(){return nodeDiff(litePNodeArr());};
-        var newRangeFirst = function(){return selObj().getRangeAt().cloneRange();};
+    function litePNodeArr(){
+        return makeNodesArray("p");
+    }
+
+    function liteDiff(){
+        return nodeDiff(litePNodeArr());
+    }
+
+    function pushMiddleRanges(){
+        var newRng = document.createRange();
+
+        for ( var i = liteDiff()-1; i > 0; i-- ) {
+                newRng.selectNodeContents(litePNodeArr()[litePNodeArr().indexOf(selObj().anchorNode.parentElement) + i]);
+                ranges.push(newRng.cloneRange());
+        }
+    }
 
     function reactToNodeCount(){
-        var newRfirst = newRangeFirst(),
-            newRangeLast = newRfirst.cloneRange(),
-            newRng = document.createRange();
+        var newRangeFirst = selObj().getRangeAt().cloneRange(),
+            newRangeLast = newRangeFirst.cloneRange();
             
         // not sure of successful way (without producing errors) to use functions instead of variables
-            newRfirst.setEnd( newRfirst.startContainer, newRfirst.startContainer.length );
+            newRangeFirst.setEnd( newRangeFirst.startContainer, newRangeFirst.startContainer.length );
             newRangeLast.setStart( newRangeLast.endContainer, 0 );
-            ranges.push( newRfirst, newRangeLast );
+            ranges.push( newRangeFirst, newRangeLast );
+
         if ( liteDiff() == 1 ) {
-        } else {
-            for ( var i = liteDiff()-1; i > 0; i-- ) {
-                    newRng.selectNodeContents(litePNodeArr()[litePNodeArr().indexOf(selObj().anchorNode.parentElement) + i]);
-                    ranges.push(newRng.cloneRange());
-            }
+            return;
         }
+        pushMiddleRanges();
     }
 
     function liteItUp(){
