@@ -94,7 +94,7 @@
         }
     }
 
-    function reactToNodeCount(){
+    function prepareAndPushMultipleRanges(){
         var newRangeFirst = selObj().getRangeAt().cloneRange(),
             newRangeLast = newRangeFirst.cloneRange();
             
@@ -123,7 +123,7 @@
             ranges.push(selObj().getRangeAt());
         } else {
         // 3) Count the number of nodes across which the selected text spans
-            reactToNodeCount();
+            prepareAndPushMultipleRanges();
           
         // 4) Determine the ranges of the selected text for each node
         // Now figure out how to get highlighting for the nodes in between the first and last ones          
