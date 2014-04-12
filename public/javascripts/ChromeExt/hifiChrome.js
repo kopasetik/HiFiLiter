@@ -98,12 +98,12 @@
         return;
     }
 
-    function reactToNodeDiff( diffToProcess, caseA , defaultCase ){
+    function reactToNodeDiff( diffToProcess, fcnCaseA , fcnCaseB ){
         if ( diffToProcess == 1) {
-            return caseA();
+            return fcnCaseA();
         }
 
-            return defaultCase();
+            return fcnCaseB();
     }
 
     function prepareAndPushMultipleRanges(){
