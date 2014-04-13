@@ -10,6 +10,8 @@ Figuring out: how to make highlights more permanent
 -(Hopefully temporary!) Use of the rangy plugin for ranges/selections (and possibly another plugin on top of it)
 -Backend logic (via RoR)
 -Twitter tie-in
+-Chrome LocalStorage
+-Saving highlights (via offsets, node #s, & local storage)
 
 *WORK IN PROGRESS*
 This will be a plugin for highlighting text on your blog and news site. The default will be that it highlights text yellow and copies the text to a social media sharing feature.
