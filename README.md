@@ -14,7 +14,7 @@ Figuring out: how to make highlights more permanent
 *WORK IN PROGRESS*
 This will be a plugin for highlighting text on your blog and news site. The default will be that it highlights text yellow and copies the text to a social media sharing feature.
 
-As foreseen, it will be required that you use special tags/attributes for your article paragraphs and possibly incorporate some other light html/css/javascript.
+As foreseen, it will be required that users employ special tags/attributes for their article paragraphs and possibly incorporate some other light html/css/javascript.
 
 Highlight solution has been homegrown thus far, but may begin to use rangy or another tool (temporarily!) for the most complete solution.
 
