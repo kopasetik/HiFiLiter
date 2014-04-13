@@ -48,9 +48,6 @@ header a {
 .prompt {
     
 }
-span[data-hilited='yes'] {
-    background-color: yellow;
-}
 article {
     margin: 0 auto;
     max-width: 500px;

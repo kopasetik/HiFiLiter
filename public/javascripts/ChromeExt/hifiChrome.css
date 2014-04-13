@@ -1,3 +1,18 @@
 span[data-hilited='yes'] {
     background-color: yellow;
 }
+strong[data-hilited='yes'] {
+    background-color: yellow;
+}
+b[data-hilited='yes'] {
+    background-color: yellow;
+}
+i[data-hilited='yes'] {
+    background-color: yellow;
+}
+u[data-hilited='yes'] {
+    background-color: yellow;
+}
+a[data-hilited='yes'] {
+    background-color: yellow;
+}
