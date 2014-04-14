@@ -16,3 +16,9 @@ u[data-hilited='yes'] {
 a[data-hilited='yes'] {
     background-color: yellow;
 }
+code[data-hilited='yes'] {
+    background-color: yellow;
+}
+pre[data-hilited='yes'] {
+    background-color: yellow;
+}
