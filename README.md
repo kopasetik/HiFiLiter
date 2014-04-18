@@ -1,3 +1,5 @@
+The Chrome extension is located at public/javascripts/ChromeExt/
+
 *CURRENT STATUS*
 Figuring out: how to make highlights permanent
 

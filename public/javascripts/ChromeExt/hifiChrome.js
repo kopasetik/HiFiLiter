@@ -146,34 +146,34 @@
     }
 
 
-$(document).ready(function() {
+// $(document).ready(function() {
 
             
 
-    // The highlighting happens when the person finishes selecting text
-    $("p").mouseup(function(){
-        function isHilited( element ){
-            return !!element.dataset.hilited;
-        }
+//     // The highlighting happens when the person finishes selecting text
+//     $("p").mouseup(function(){
+//         function isHilited( element ){
+//             return !!element.dataset.hilited;
+//         }
 
-        // if (isHilited( $(this)) && selObj().containsNode($(this))) {
-        //     [element].outerHTML = [element].innerHTML;
+//         // if (isHilited( $(this)) && selObj().containsNode($(this))) {
+//         //     [element].outerHTML = [element].innerHTML;
             
-        //     liteItUp();
-        //     return;
-        // }
+//         //     liteItUp();
+//         //     return;
+//         // }
 
-        // if (isHilited()) {
-        //     [element].outerHTML = [element].innerHTML;
-        //     liteItUp();
-        //     return;
-        // }
+//         // if (isHilited()) {
+//         //     [element].outerHTML = [element].innerHTML;
+//         //     liteItUp();
+//         //     return;
+//         // }
 
-        liteItUp();
-        return;
-    });
+//         liteItUp();
+//         return;
+//     });
 
-});
+// });
 
     // III) Put selection text into a margin popover
     // 1) Get rid of any extra whitespace and/or carriage returns
