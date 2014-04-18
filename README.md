@@ -1,17 +1,12 @@
 *CURRENT STATUS*
-3 separate files (besides this README):
--hifilighter_front_end.js
--hifilighter_front_end.css
--hifilighter_front_end.html
-
-Figuring out: how to make highlights more permanent
+Figuring out: how to make highlights permanent
 
 *COMING SOON*
--(Hopefully temporary!) Use of the rangy plugin for ranges/selections (and possibly another plugin on top of it)
--Backend logic (via RoR)
+-Updates to RoR backend logic
 -Twitter tie-in
 -Chrome LocalStorage
 -Saving highlights (via offsets, node #s, & local storage)
+-Possible use of the rangy plugin for ranges/selections. Hopefully a temporary fix.
 
 *WORK IN PROGRESS*
 This will be a plugin for highlighting text on your blog and news site. The default will be that it highlights text yellow and copies the text to a social media sharing feature.

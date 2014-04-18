@@ -72,7 +72,7 @@
         return arr.indexOf(selObj().focusNode.parentElement) - arr.indexOf(selObj().anchorNode.parentElement);
     }
 
-    // how to test
+    // how to test?
     function splitHiliteByNodes(){
 
     }
