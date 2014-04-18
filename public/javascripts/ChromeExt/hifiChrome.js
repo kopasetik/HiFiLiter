@@ -4,14 +4,14 @@
 
     var ranges = [];
     
-    // how to test?
+    // tested
     function convertToArticleJSON(){
         var artie = {};
         artie["article"] = {"title": document.querySelector("title").text, "url": document.URL};
         return artie;
     }
 
-    // how to test?
+    // tested
     function convertToHiliteJSON( str ){
         var hailey = {};
         hailey["highlight"] = {"text": str , "url": document.URL};
@@ -52,9 +52,9 @@
     }
 
     // how to test?
-    function surroundAll( arr ){
+    function surroundAll( arr, el, attr){
         arr.forEach(function(element){
-                    element.surroundContents(makeNewElement("span", "data-hilited"));
+                    element.surroundContents(makeNewElement(el, attr));
         });
     }
 
@@ -115,7 +115,7 @@
             newRangeLast.setStart( newRangeLast.endContainer, 0 );
             ranges.push( newRangeFirst, newRangeLast );
 
-        reactToNodeDiff( liteDiff(), emptyReturn, pushMiddleRanges)
+        reactToNodeDiff( liteDiff(), emptyReturn, pushMiddleRanges);
     }
 
     function liteItUp(){
@@ -139,7 +139,7 @@
         }
 
         // 5) Surround the range(s) with tags & Toggle '.hilited' class for the tags
-        surroundAll( ranges );
+        surroundAll( ranges, "span", "data-hilited" );
 
         // 6) Collapse any remaining selection
         selObj().collapse();
